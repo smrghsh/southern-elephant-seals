@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="xr template" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://smrghsh.github.io/xr/" />
+    <title>XRSS</title>
+
+    <link rel="icon" href="https://xrss.org/xrss.ico" />
+  </head>
+  <body>
+    <h1
+      id="loading"
+      style="
+        position: absolute;
+        color: white;
+        margin: 1em;
+        font-family: sans-serif;
+      "
+    >
+      loading...
+    </h1>
+
+    <canvas class="webgl"></canvas>
+    <div id="legend"></div>
+    <div id="graphs-2d-container">
+      <canvas id="graph-depth" width="200" height="100"></canvas>
+      <canvas id="graph-heartrate" width="200" height="100"></canvas>
+      <canvas id="graph-stroke" width="200" height="100"></canvas>
+    </div>
+    <script type="module" src="./script.js"></script>
+    <script></script>
+  </body>
+</html>
