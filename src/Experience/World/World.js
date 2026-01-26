@@ -7,9 +7,6 @@ import SeaLevelPlane from "./SeaLevelPlane.js";
 import Sky from "./Sky.js";
 import { Selectable } from "../brahma/Brahma.js";
 import Papa from "papaparse";
-import Legend from "./Legend.js";
-import Graphs from "./Graphs.js";
-import Callout from "./Callout.js";
 
 export default class World {
   constructor() {
@@ -36,23 +33,23 @@ export default class World {
       this.environment = new Environment();
       this.seaLevelPlane = new SeaLevelPlane();
       this.skyBox = new Sky();
-      this.legend = new Legend();
-      this.graphs = new Graphs();
-      this.callout = new Callout();
-      this.callout.updateInformationDisplay(
-        0,
-        0,
-        0,
-        0,
-        0,
-        "",
-        0,
-        0,
-        0,
-        2,
-        1,
-        1
-      );
+      // this.legend = new Legend();
+      // this.graphs = new Graphs();
+      // this.callout = new Callout();
+      // this.callout.updateInformationDisplay(
+      //   0,
+      //   0,
+      //   0,
+      //   0,
+      //   0,
+      //   "",
+      //   0,
+      //   0,
+      //   0,
+      //   2,
+      //   1,
+      //   1,
+      // );
     });
     this.ready = true;
   }
