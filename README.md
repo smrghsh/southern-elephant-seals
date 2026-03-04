@@ -1,4 +1,4 @@
-# penguins
+# southern-elephant-seals
 
 ## Attributions
 
