@@ -57,7 +57,7 @@ export default class SealPath {
             depth
           );
 
-          points.push(new THREE.Vector3(x, -y, z));
+          points.push(new THREE.Vector3(x, -y, z)); // Flipped y coordinate to match seal realistic dive and resurface.
           latitudes.push(lat);
           longitudes.push(lon);
           depths.push(depth);

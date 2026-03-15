@@ -20,15 +20,16 @@ export default class Camera {
       1000
     );
     this.instance.position.set(
-      -3.6277092514077784,
-      1.6242714732329864,
-      2.729361431631495
+      109.47,
+      31.352,
+      70.146,
     );
-    this.instance.lookAt(new THREE.Vector3(0, 0, 0));
+
     this.cameraGroup.add(this.instance);
   }
   setOrbitControls() {
     this.controls = new OrbitControls(this.instance, this.canvas);
+    this.controls.update();
   }
   resize() {
     this.instance.aspect = this.sizes.width / this.sizes.height;

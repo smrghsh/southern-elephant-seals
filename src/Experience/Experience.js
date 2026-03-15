@@ -124,6 +124,10 @@ export default class Experience extends EventEmitter {
     this.camera = new Camera();
     this.renderer = new Renderer();
 
+    // if (this.debug.active) {
+    //   this.setCameraDebug();
+    // }
+
     // Initialize pointer with camera source now that camera exists
     const initialMouse = new THREE.Vector2(0, 0);
     this.pointer.setSource("camera", {
@@ -163,6 +167,71 @@ export default class Experience extends EventEmitter {
     // this.setupLoginPanel();
   }
 
+  // setCameraDebug() {
+  //   this.cameraDebugPosition = new THREE.Vector3();
+  //   this.cameraDebugDirection = new THREE.Vector3();
+  //   this.cameraDebugData = {
+  //     positionX: 0,
+  //     positionY: 0,
+  //     positionZ: 0,
+  //     directionX: 0,
+  //     directionY: 0,
+  //     directionZ: 0,
+  //   };
+
+  //   this.cameraDebugFolder = this.debug.ui.addFolder("Camera");
+  //   this.cameraDebugFolder
+  //     .add(this.cameraDebugData, "positionX")
+  //     .name("Position X")
+  //     .listen();
+  //   this.cameraDebugFolder
+  //     .add(this.cameraDebugData, "positionY")
+  //     .name("Position Y")
+  //     .listen();
+  //   this.cameraDebugFolder
+  //     .add(this.cameraDebugData, "positionZ")
+  //     .name("Position Z")
+  //     .listen();
+  //   this.cameraDebugFolder
+  //     .add(this.cameraDebugData, "directionX")
+  //     .name("Direction X")
+  //     .listen();
+  //   this.cameraDebugFolder
+  //     .add(this.cameraDebugData, "directionY")
+  //     .name("Direction Y")
+  //     .listen();
+  //   this.cameraDebugFolder
+  //     .add(this.cameraDebugData, "directionZ")
+  //     .name("Direction Z")
+  //     .listen();
+
+  //   this.updateCameraDebug();
+  // }
+
+  // updateCameraDebug() {
+  //   this.camera.instance.getWorldPosition(this.cameraDebugPosition);
+  //   this.camera.instance.getWorldDirection(this.cameraDebugDirection);
+
+  //   this.cameraDebugData.positionX = Number(
+  //     this.cameraDebugPosition.x.toFixed(3)
+  //   );
+  //   this.cameraDebugData.positionY = Number(
+  //     this.cameraDebugPosition.y.toFixed(3)
+  //   );
+  //   this.cameraDebugData.positionZ = Number(
+  //     this.cameraDebugPosition.z.toFixed(3)
+  //   );
+  //   this.cameraDebugData.directionX = Number(
+  //     this.cameraDebugDirection.x.toFixed(3)
+  //   );
+  //   this.cameraDebugData.directionY = Number(
+  //     this.cameraDebugDirection.y.toFixed(3)
+  //   );
+  //   this.cameraDebugData.directionZ = Number(
+  //     this.cameraDebugDirection.z.toFixed(3)
+  //   );
+  // }
+
   resize() {
     console.log("resized occured");
     this.camera.resize();
@@ -178,6 +247,11 @@ export default class Experience extends EventEmitter {
     } else {
       console.log("im in headset");
     }
+
+    // if (this.debug.active) {
+    //   this.updateCameraDebug();
+    // }
+
     this.world.update();
   }
   isXRActive() {
