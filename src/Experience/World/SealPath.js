@@ -57,7 +57,7 @@ export default class SealPath {
             depth
           );
 
-          points.push(new THREE.Vector3(x, y, z));
+          points.push(new THREE.Vector3(x, -y, z));
           latitudes.push(lat);
           longitudes.push(lon);
           depths.push(depth);
