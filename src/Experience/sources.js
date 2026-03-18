@@ -11,6 +11,12 @@ export default [
     path: "textures/skyTexture.exr",
   },
 
+  {
+    name: "sealModel",
+    type: "glbModel",
+    path: "Seal._2.glb",
+  },
+
   // {
   //   name: "font",
   //   type: "font",

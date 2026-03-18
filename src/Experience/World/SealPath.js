@@ -31,7 +31,7 @@ export default class SealPath {
       chunks.forEach((chunk, index) => {
         if (chunk && chunk.length > 0) {
           allData.push(...chunk);
-          console.log(`Chunk ${index + 1}: ${chunk.length} rows`);
+          // console.log(`Chunk ${index + 1}: ${chunk.length} rows`);
         }
       });
 
@@ -42,11 +42,44 @@ export default class SealPath {
       const latitudes = [];
       const longitudes = [];
       const depths = [];
+      const respiratory = [];
+      const secondsArray = [];
+      const rTimeArray = [];
+      const sleepStates = [];
+      const strokeRates = [];
+      const heartRates = [];
+      const headings = [];
+      const pitches = [];
+      const rolls = [];
 
       allData.forEach((entry) => {
         const lat = entry.Lat1Hz;
         const lon = entry.Lon1Hz;
         const depth = entry.depth || 0;
+        const heading = Number.isFinite(entry.heading_geo)
+          ? entry.heading_geo
+          : Number.isFinite(entry.heading_mag)
+            ? entry.heading_mag
+            : 0;
+        const pitch = Number.isFinite(entry.pitch) ? entry.pitch : 0;
+        const roll = Number.isFinite(entry.roll) ? entry.roll : 0;
+        const strokeRate = Number.isFinite(entry.strokingrate)
+          ? entry.strokingrate
+          : 0;
+        const seconds = Number.isFinite(entry.datetimenumeric)
+          ? entry.datetimenumeric
+          : 0;
+        const rTime =
+          entry.Date_GMT && entry.Time_GMT
+            ? `${entry.Date_GMT} ${entry.Time_GMT}`
+            : "";
+        const sleepState = Number.isFinite(entry.pred_divetype)
+          ? entry.pred_divetype
+          : 0;
+        const respiratoryRate = Number.isFinite(entry.respiratory)
+          ? entry.respiratory
+          : 0;
+        const heartRate = Number.isFinite(entry.heartRate) ? entry.heartRate : 0;
 
         // Check if lat/lon are valid
         if (isFinite(lat) && isFinite(lon) && lat !== null && lon !== null) {
@@ -61,6 +94,15 @@ export default class SealPath {
           latitudes.push(lat);
           longitudes.push(lon);
           depths.push(depth);
+          respiratory.push(respiratoryRate);
+          secondsArray.push(seconds);
+          rTimeArray.push(rTime);
+          sleepStates.push(sleepState);
+          strokeRates.push(strokeRate);
+          heartRates.push(heartRate);
+          headings.push(heading);
+          pitches.push(pitch);
+          rolls.push(roll);
         }
       });
 
@@ -76,6 +118,15 @@ export default class SealPath {
       this.latitudes = latitudes;
       this.longitudes = longitudes;
       this.depths = depths;
+      this.respiratory = respiratory;
+      this.secondsArray = secondsArray;
+      this.rTimeArray = rTimeArray;
+      this.sleepStates = sleepStates;
+      this.strokeRates = strokeRates;
+      this.heartRates = heartRates;
+      this.headings = headings;
+      this.pitches = pitches;
+      this.rolls = rolls;
 
       // Build line geometry
       const positions = [];
@@ -153,6 +204,15 @@ export default class SealPath {
       lat: this.latitudes[nearestIndex],
       lng: this.longitudes[nearestIndex],
       depth: this.depths[nearestIndex],
+      resp: this.respiratory[nearestIndex],
+      seconds: this.secondsArray[nearestIndex],
+      rTime: this.rTimeArray[nearestIndex],
+      sleep: this.sleepStates[nearestIndex],
+      stroke: this.strokeRates[nearestIndex],
+      heartRate: this.heartRates[nearestIndex],
+      heading: this.headings[nearestIndex],
+      pitch: this.pitches[nearestIndex],
+      roll: this.rolls[nearestIndex],
     };
   }
 

@@ -129,7 +129,6 @@ export default class Callout extends THREE.Group {
     rTime,
     sleep,
     stroke,
-    heartRate,
     heading,
     pitch,
     roll
@@ -143,7 +142,6 @@ export default class Callout extends THREE.Group {
     this.rTime = rTime;
     this.sleep = sleep;
     this.stroke = stroke;
-    this.heartRate = heartRate;
     this.heading = heading;
     this.pitch = pitch;
     this.roll = roll;
@@ -159,6 +157,8 @@ export default class Callout extends THREE.Group {
 
     // Update orientation seal to match heading, pitch, roll
     this.orientationRepresentation.rotation.set(0, Math.PI, 0);
+    console.log(this.heading);
+    console.log(this.pitch);
     this.orientationRepresentation.rotateY(-1 * this.heading); // Heading third (yaw)
     this.orientationRepresentation.rotateX(-1 * this.pitch); // Pitch second
     this.orientationRepresentation.rotateZ(this.roll); // Roll first
@@ -238,13 +238,13 @@ export default class Callout extends THREE.Group {
 
     // Right column: Heart Rate, Sleep, Stroke
     let rightY = y;
-    ctx.fillText(`Heart Rate: ${this.heartRate.toFixed(1)} bpm`, col2X, rightY);
-    ctx.fillText(`Sleep: ${sleepLabel}`, col2X, (rightY += lineHeight));
-    ctx.fillText(
-      `Stroke: ${this.stroke.toFixed(2)} spm`,
-      col2X,
-      (rightY += lineHeight)
-    );
+    // ctx.fillText(`Heart Rate: ${this.heartRate.toFixed(1)} bpm`, col2X, rightY);
+    // ctx.fillText(`Sleep: ${sleepLabel}`, col2X, (rightY += lineHeight));
+    // ctx.fillText(
+    //   `Stroke: ${this.stroke.toFixed(2)} spm`,
+    //   col2X,
+    //   (rightY += lineHeight)
+    // );
 
     // Update existing texture instead of creating new one
     this.informationDisplay.material.map.needsUpdate = true;
@@ -282,7 +282,6 @@ export default class Callout extends THREE.Group {
       this.currentPointIndex = this.currentSealPath.points.length - 1;
       return; // At end
     }
-
     this.updateFromPointIndex();
   }
 
@@ -305,6 +304,7 @@ export default class Callout extends THREE.Group {
 
     const idx = this.currentPointIndex;
     const sealPath = this.currentSealPath;
+    console.log(sealPath);
 
     // Update position
     this.position.copy(sealPath.points[idx]);
@@ -319,10 +319,9 @@ export default class Callout extends THREE.Group {
       sealPath.rTimeArray[idx],
       sealPath.sleepStates[idx],
       sealPath.strokeRates[idx],
-      sealPath.heartRates[idx],
-      sealPath.orientation[idx].x,
-      sealPath.orientation[idx].y,
-      sealPath.orientation[idx].z
+      sealPath.headings[idx],
+      sealPath.pitches[idx],
+      sealPath.rolls[idx]
     );
 
     // Update graphs asynchronously

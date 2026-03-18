@@ -7,6 +7,7 @@ import SeaLevelPlane from "./SeaLevelPlane.js";
 import Sky from "./Sky.js";
 import { Selectable } from "../brahma/Brahma.js";
 import Papa from "papaparse";
+import Callout from "./Callout.js";
 
 export default class World {
   constructor() {
@@ -35,7 +36,7 @@ export default class World {
       this.skyBox = new Sky();
       // this.legend = new Legend();
       // this.graphs = new Graphs();
-      // this.callout = new Callout();
+      this.callout = new Callout();
       // this.callout.updateInformationDisplay(
       //   0,
       //   0,
@@ -59,7 +60,6 @@ export default class World {
     this.sealPaths = [];
 
     const penguinPath = new SealPath();
-    this.penguin.push(penguinPath);
     this.sealPaths.push(penguinPath);
 
     console.log("Loaded penguin path");
